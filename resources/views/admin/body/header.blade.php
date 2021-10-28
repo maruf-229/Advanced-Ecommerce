@@ -101,10 +101,15 @@
                     </ul>
                 </li>
 
+                @php
+                    $adminData = DB::table('admins')->first();
+                    @endphp
+
                 <!-- User Account-->
                 <li class="dropdown user user-menu">
                     <a href="#" class="waves-effect waves-light rounded dropdown-toggle p-0" data-toggle="dropdown" title="User">
-                        <img src="{{ asset('backend/images/avatar/avatar-1.png') }}" alt="">
+                        <img src="{{ (!empty($adminData->profile_photo_path))? url('upload/admin_images/'.$adminData->profile_photo_path):
+                                url('upload/no_image.jpg') }}" alt="">
                     </a>
                     <ul class="dropdown-menu animated flipInX">
                         <li class="user-body">
