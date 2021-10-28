@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminProfileController extends Controller
 {
@@ -31,6 +33,34 @@ class AdminProfileController extends Controller
             $data['profile_photo_path'] = $fileName;
         }
         $data->save();
-        return redirect()->route('admin.profile');
+        $notification = array(
+            'message' => 'Admin Profile Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('admin.profile')->with($notification);
+    }
+
+    public function AdminChangePassword(){
+        return view('admin.admin_change_password');
+    }
+
+    public function AdminUpdateChangePassword(Request $request){
+        $validateData = $request->validate([
+            'oldPassword' => 'required',
+            'password' => 'required|confirmed'
+        ]);
+
+        $hashedPassword = Admin::find(1)->password;
+
+        if (Hash::check($request->oldPassword,$hashedPassword)){
+            $admin = Admin::find(1);
+            $admin->password = Hash::make($request->password);
+            $admin->save();
+
+            Auth::logout();
+            return redirect()->route('admin.logout');
+        }else{
+
+        }
     }
 }
