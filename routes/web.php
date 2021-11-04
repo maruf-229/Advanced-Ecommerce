@@ -39,6 +39,8 @@ Route::get('/admin/change/password' , [AdminProfileController::class, 'AdminChan
 
 Route::post('/admin/change/password/update' , [AdminProfileController::class, 'AdminUpdateChangePassword'])->name('update.change.password');
 
+//user routes
+
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
