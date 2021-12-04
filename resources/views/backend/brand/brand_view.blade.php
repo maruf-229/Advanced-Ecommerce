@@ -33,8 +33,8 @@
                                                 <img src="{{ asset($item->brand_image) }}" style="width: 70px; height: 40px;">
                                             </td>
                                             <td>
-                                                <a href="" class="btn btn-info">Edit</a>
-                                                <a href="" class="btn btn-danger">Delete</a>
+                                                <a href="{{ route('brand.edit',$item->id) }}" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i></a>
+                                                <a href="{{ route('brand.delete',$item->id) }}" class="btn btn-danger" id="delete" title="Delete Data"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -68,6 +68,9 @@
                                                 <h5>Brand Name (English) <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input type="text" name="brand_name_en" class="form-control">
+                                                    @error('brand_name_en')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
@@ -75,6 +78,9 @@
                                                 <h5>Brand Name (Bangla) <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input type="text" name="brand_name_ban" class="form-control">
+                                                    @error('brand_name_ban')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
@@ -82,6 +88,9 @@
                                                 <h5>Brand Image <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <input type="file" name="brand_image" class="form-control">
+                                                    @error('brand_image')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
