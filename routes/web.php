@@ -3,22 +3,12 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 
 Route::group(['prefix' => 'admin' , 'middleware' => ['admin:admin']],function (){
     Route::get('/login' , [AdminController::class, 'loginForm']);
@@ -55,11 +45,26 @@ Route::get('/user/change/password' , [IndexController::class, 'UserChangePasswor
 Route::post('/user/password/update' , [IndexController::class, 'UserPasswordUpdate'])->name('user.password.update');
 
 // Admin Brand routes
-
 Route::prefix('brand')->group(function (){
     Route::get('/view' , [BrandController::class, 'brandView'])->name('all.brand');
     Route::post('/store' , [BrandController::class, 'brandStore'])->name('brand.store');
     Route::get('/edit/{id}' , [BrandController::class, 'brandEdit'])->name('brand.edit');
     Route::post('/update' , [BrandController::class, 'brandUpdate'])->name('brand.update');
     Route::get('/delete/{id}' , [BrandController::class, 'brandDelete'])->name('brand.delete');
+});
+
+// Admin Category routes
+Route::prefix('category')->group(function (){
+    Route::get('/view' , [CategoryController::class, 'categoryView'])->name('all.category');
+    Route::post('/store' , [CategoryController::class, 'categoryStore'])->name('category.store');
+    Route::get('/edit/{id}' , [CategoryController::class, 'categoryEdit'])->name('category.edit');
+    Route::post('/update' , [CategoryController::class, 'categoryUpdate'])->name('category.update');
+    Route::get('/delete/{id}' , [CategoryController::class, 'categoryDelete'])->name('category.delete');
+
+    //Admin sub category all routes
+    Route::get('/sub/view' , [SubCategoryController::class, 'sub_categoryView'])->name('all.sub_category');
+    Route::post('/sub/store' , [SubCategoryController::class, 'sub_categoryStore'])->name('subcategory.store');
+    Route::get('/sub/edit/{id}' , [SubCategoryController::class, 'sub_categoryEdit'])->name('subcategory.edit');
+    Route::post('/sub/update' , [SubCategoryController::class, 'sub_categoryUpdate'])->name('subcategory.update');
+    Route::get('/sub/delete/{id}' , [SubCategoryController::class, 'sub_categoryDelete'])->name('subcategory.delete');
 });
