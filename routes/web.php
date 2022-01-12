@@ -67,4 +67,12 @@ Route::prefix('category')->group(function (){
     Route::get('/sub/edit/{id}' , [SubCategoryController::class, 'sub_categoryEdit'])->name('subcategory.edit');
     Route::post('/sub/update' , [SubCategoryController::class, 'sub_categoryUpdate'])->name('subcategory.update');
     Route::get('/sub/delete/{id}' , [SubCategoryController::class, 'sub_categoryDelete'])->name('subcategory.delete');
+
+    //Admin sub-sub category all routes
+    Route::get('/sub/sub/view' , [SubCategoryController::class, 'sub_sub_categoryView'])->name('all.sub_sub_category');
+    Route::get('/subcategory/ajax/{category_id}' , [SubCategoryController::class, 'GetSubcategory']);
+    Route::post('/sub/sub/store' , [SubCategoryController::class, 'sub_sub_categoryStore'])->name('sub_subcategory.store');
+    Route::get('/sub/sub/edit/{id}' , [SubCategoryController::class, 'sub_sub_categoryEdit'])->name('sub_subcategory.edit');
+    Route::post('/sub/sub/update' , [SubCategoryController::class, 'sub_sub_categoryUpdate'])->name('sub_subcategory.update');
+    Route::get('/sub/sub/delete/{id}' , [SubCategoryController::class, 'sub_sub_categoryDelete'])->name('sub_subcategory.delete');
 });
