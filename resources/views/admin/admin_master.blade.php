@@ -58,6 +58,14 @@
 <script src="{{ asset('assets/vendor_components/datatable/datatables.min.js') }}"></script>
 <script src="{{ asset('backend/js/pages/data-table.js') }}"></script>
 
+{{--tags input script--}}
+<script src="{{ asset('assets/vendor_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js') }}"></script>
+
+{{--CK Editor--}}
+<script src=" {{ asset('../assets/vendor_components/ckeditor/ckeditor.js') }}"></script>
+<script src=" {{ asset('../assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js') }}"></script>
+<script src=" {{ asset('backend/js/pages/editor.js') }}"></script>
+
 <!-- Sunny Admin App -->
 <script src="{{ asset('backend/js/template.js') }}"></script>
 <script src="{{ asset('backend/js/pages/dashboard.js') }}"></script>
