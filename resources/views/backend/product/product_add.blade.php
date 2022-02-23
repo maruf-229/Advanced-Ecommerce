@@ -19,7 +19,9 @@
                     <div class="box-body">
                         <div class="row">
                             <div class="col">
-                                <form novalidate>
+                                <form method="post" action="{{ route('product_store') }}" enctype="multipart/form-data">
+                                    @csrf
+
                                     <div class="row">
                                         <div class="col-12">
 
