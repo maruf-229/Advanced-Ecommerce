@@ -89,5 +89,8 @@ Route::prefix('product')->group(function (){
     Route::post('/store' , [ProductController::class, 'storeProduct'])->name('product_store');
     Route::get('/manage' , [ProductController::class, 'mngProduct'])->name('manage-product');
     Route::get('/edit/{id}' , [ProductController::class, 'editProduct'])->name('product.edit');
+    Route::post('/data/update' , [ProductController::class, 'updateProductData'])->name('product_update');
+    Route::post('/image/update' , [ProductController::class, 'MultiImageUpdate'])->name('update_product_image');
+    Route::post('/thumbnail/update' , [ProductController::class, 'ThumbnailImageUpdate'])->name('update_product_thumbnail');
 
 });
