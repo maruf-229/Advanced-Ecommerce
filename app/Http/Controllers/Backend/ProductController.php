@@ -201,4 +201,57 @@ class ProductController extends Controller
         );
         return redirect()->back()->with($notification);
     }
+
+    public function multiImgDelete($id){
+        $old_img = MultiImg::findorFail($id);
+        unlink($old_img->photo_name);
+
+        MultiImg::findorFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Product Image Deleted Successfully',
+            'alert-type' => 'info'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function productInactive($id){
+        Product::findorFail($id)->update(['status' => 0]);
+
+        $notification = array(
+            'message' => 'Product Inactivated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function productActive($id){
+        Product::findorFail($id)->update(['status' => 1]);
+
+        $notification = array(
+            'message' => 'Product Activated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function productDelete($id){
+        $product = Product::findorFail($id);
+        unlink($product->product_thumbnail);
+
+        Product::findorFail($id)->delete();
+
+        $images = MultiImg::where('product_id',$id)->get();
+
+        foreach ($images as $img){
+            unlink($img->photo_name);
+            MultiImg::where('product_id',$id)->delete();
+        }
+
+        $notification = array(
+            'message' => 'Product Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
 }
