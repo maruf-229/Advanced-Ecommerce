@@ -119,6 +119,9 @@ Route::post('/user/password/update' , [IndexController::class, 'UserPasswordUpda
 Route::get('/language/english' , [LanguageController::class, 'english'])->name('english.language');
 Route::get('/language/bangla' , [LanguageController::class, 'bangla'])->name('bangla.language');
 
+//frontend product details page
+Route::get('/product/details/{id}/{slug}' , [IndexController::class, 'productDetails']);
+
 
 
 

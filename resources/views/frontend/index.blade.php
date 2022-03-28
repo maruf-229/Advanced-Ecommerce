@@ -1,6 +1,9 @@
 @extends('frontend.main_master')
 @section('content')
 
+@section('title')
+    Home MH's Online Shop
+@endsection
     <div class="body-content outer-top-xs" id="top-banner-and-menu">
         <div class="container">
             <div class="row">
@@ -957,7 +960,7 @@
                                                     <!-- /.product-image -->
 
                                                     <div class="product-info text-left">
-                                                        <h3 class="name"><a href="detail.html">
+                                                        <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">
                                                                 @if(session()->get('language') == 'bangla'){{ $product->product_name_ban }} @else {{ $product->product_name_en }} @endif
                                                             </a></h3>
                                                         <div class="rating rateit-small"></div>
