@@ -122,6 +122,9 @@ Route::get('/language/bangla' , [LanguageController::class, 'bangla'])->name('ba
 //frontend product details page
 Route::get('/product/details/{id}/{slug}' , [IndexController::class, 'productDetails']);
 
+//frontend tag wise product page
+Route::get('/product/tag/{tag}' , [IndexController::class, 'tagWiseProduct']);
+
 
 
 
