@@ -125,6 +125,12 @@ Route::get('/product/details/{id}/{slug}' , [IndexController::class, 'productDet
 //frontend tag wise product page
 Route::get('/product/tag/{tag}' , [IndexController::class, 'tagWiseProduct']);
 
+//frontend subcategory wise product data
+Route::get('/subcategory/product/{subcat_id}/{slug}' , [IndexController::class, 'subCatWiseProduct']);
+
+//frontend subcategory wise product data
+Route::get('/sub-subcategory/product/{sub_subcat_id}/{slug}' , [IndexController::class, 'sub_subCatWiseProduct']);
+
 
 
 
