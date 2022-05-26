@@ -113,7 +113,7 @@ Route::middleware(['auth:admin'])->group(function (){
     // Admin Shipping routes
     Route::prefix('shipping')->group(function (){
         Route::get('/division/view' , [ShippingAreaController::class, 'divisionView'])->name('manage-division');
-        Route::post('/store' , [CouponController::class, 'couponStore'])->name('coupon.store');
+        Route::post('/division/store' , [ShippingAreaController::class, 'divisionStore'])->name('division.store');
         Route::get('/edit/{id}' , [CouponController::class, 'editCoupon'])->name('coupon.edit');
         Route::post('/update{id}' , [CouponController::class, 'couponUpdate'])->name('coupon.update');
         Route::get('/delete/{id}' , [CouponController::class, 'couponDelete'])->name('coupon.delete');
