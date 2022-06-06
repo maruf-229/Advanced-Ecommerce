@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\ShipDistrict;
 use App\Models\ShipDivision;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -57,5 +58,65 @@ class ShippingAreaController extends Controller
             'alert-type' => 'info'
         );
         return redirect()->route('manage-division')->with($notification);
+    }
+
+
+
+
+
+//start district area
+    public function districtView(){
+        $divisions = ShipDivision::orderBy('division_name','ASC')->get();
+        $districts = ShipDistrict::with('division')->orderBy('id','DESC')->get();
+        return view('backend.ship.district.view_district',compact('divisions','districts'));
+    }
+
+    public function districtStore(Request $request){
+        $request->validate([
+            'division_id' => 'required',
+            'district_name' => 'required',
+        ]);
+
+        ShipDistrict::insert([
+            'division_id' => $request->division_id,
+            'district_name' => $request->district_name,
+            'created_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'District Inserted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function editDistrict($id){
+        $divisions = ShipDivision::orderBy('division_name','ASC')->get();
+        $district = ShipDistrict::findOrFail($id);
+        return view('backend.ship.district.edit_district',compact('divisions','district'));
+    }
+
+    public function districtUpdate(Request $request,$id){
+        ShipDistrict::findOrFail($id)->update([
+            'division_id' => $request->division_id,
+            'district_name' => $request->district_name,
+            'created_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'District Updated Successfully',
+            'alert-type' => 'info'
+        );
+        return redirect()->route('manage-district')->with($notification);
+    }
+
+    public function districtDelete($id){
+        ShipDistrict::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'District Deleted Successfully',
+            'alert-type' => 'info'
+        );
+        return redirect()->back()->with($notification);
     }
 }
