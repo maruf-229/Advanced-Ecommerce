@@ -125,6 +125,13 @@ Route::middleware(['auth:admin'])->group(function (){
         Route::get('/district/edit/{id}' , [ShippingAreaController::class, 'editDistrict'])->name('district.edit');
         Route::post('/district/update{id}' , [ShippingAreaController::class, 'districtUpdate'])->name('district.update');
         Route::get('/district/delete/{id}' , [ShippingAreaController::class, 'districtDelete'])->name('district.delete');
+
+        //ship state
+        Route::get('/state/view' , [ShippingAreaController::class, 'stateView'])->name('manage-state');
+        Route::post('/state/store' , [ShippingAreaController::class, 'stateStore'])->name('state.store');
+        Route::get('/state/edit/{id}' , [ShippingAreaController::class, 'editState'])->name('state.edit');
+        Route::post('/state/update{id}' , [ShippingAreaController::class, 'stateUpdate'])->name('state.update');
+        Route::get('/state/delete/{id}' , [ShippingAreaController::class, 'stateDelete'])->name('state.delete');
     });
 
 });

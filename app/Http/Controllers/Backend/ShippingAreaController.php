@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\ShipDistrict;
 use App\Models\ShipDivision;
+use App\Models\ShipState;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -115,6 +116,68 @@ class ShippingAreaController extends Controller
 
         $notification = array(
             'message' => 'District Deleted Successfully',
+            'alert-type' => 'info'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+
+    //start state area
+    public function stateView(){
+        $divisions = ShipDivision::orderBy('division_name','ASC')->get();
+        $districts = ShipDistrict::orderBy('district_name','ASC')->get();
+        $states = ShipState::with('division','district')->orderBy('id','DESC')->get();
+        return view('backend.ship.state.view_states',compact('divisions','districts','states'));
+    }
+
+    public function stateStore(Request $request){
+        $request->validate([
+            'division_id' => 'required',
+            'district_id' => 'required',
+            'state_name' => 'required',
+        ]);
+
+        ShipState::insert([
+            'division_id' => $request->division_id,
+            'district_id' => $request->district_id,
+            'state_name' => $request->state_name,
+            'created_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'State Inserted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function editState($id){
+        $division = ShipDivision::orderBy('division_name','ASC')->get();
+        $district = ShipDistrict::orderBy('district_name','ASC')->get();
+        $state = ShipState::findOrFail($id);
+        return view('backend.ship.state.edit_state',compact('division','district','state'));
+    }
+
+    public function stateUpdate(Request $request,$id){
+        ShipState::findOrFail($id)->update([
+            'division_id' => $request->division_id,
+            'district_id' => $request->district_id,
+            'state_name' => $request->state_name,
+            'created_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'State Updated Successfully',
+            'alert-type' => 'info'
+        );
+        return redirect()->route('manage-state')->with($notification);
+    }
+
+    public function stateDelete($id){
+        ShipState::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'State Deleted Successfully',
             'alert-type' => 'info'
         );
         return redirect()->back()->with($notification);
