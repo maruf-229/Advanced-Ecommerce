@@ -213,7 +213,8 @@ Route::get('/cart-increment/{rowId}' , [CartPageController::class, 'cartIncremen
 //cart decrement
 Route::get('/cart-decrement/{rowId}' , [CartPageController::class, 'cartDecrement']);
 
-
+//Frontend Coupon Option
+Route::post('/coupon-apply' , [CartController::class, 'couponApply']);
 
 
 
