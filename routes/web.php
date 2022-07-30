@@ -216,6 +216,8 @@ Route::get('/cart-decrement/{rowId}' , [CartPageController::class, 'cartDecremen
 //Frontend Coupon Option
 Route::post('/coupon-apply' , [CartController::class, 'couponApply']);
 
+Route::get('/coupon-calculation' , [CartController::class, 'couponCalculation']);
+
 
 
 

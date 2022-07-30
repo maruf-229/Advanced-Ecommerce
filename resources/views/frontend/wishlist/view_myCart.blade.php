@@ -51,28 +51,33 @@
 
 
                 <div class="col-md-4 col-sm-12 estimate-ship-tax">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>
-                                <span class="estimate-title">Discount Code</span>
-                                <p>Enter your coupon code if you have one..</p>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>
-                                <div class="form-group">
-                                    <input type="text" class="form-control unicase-form-control text-input" id="coupon_name" placeholder="You Coupon..">
-                                </div>
-                                <div class="clearfix pull-right">
-                                    <button type="submit" class="btn-upper btn btn-primary" onclick="applyCoupon()">APPLY COUPON</button>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody><!-- /tbody -->
-                    </table><!-- /table -->
+
+                    @if(Session::has('coupon'))
+
+                    @else
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <span class="estimate-title">Discount Code</span>
+                                        <p>Enter your coupon code if you have one..</p>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control unicase-form-control text-input" id="coupon_name" placeholder="You Coupon..">
+                                        </div>
+                                        <div class="clearfix pull-right">
+                                            <button type="submit" class="btn-upper btn btn-primary" onclick="applyCoupon()">APPLY COUPON</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody><!-- /tbody -->
+                        </table><!-- /table -->
+                    @endif
                 </div><!-- /.estimate-ship-tax -->
 
 
@@ -81,26 +86,17 @@
 
                 <div class="col-md-4 col-sm-12 cart-shopping-total">
                     <table class="table">
-                        <thead>
-                        <tr>
-                            <th>
-                                <div class="cart-sub-total">
-                                    Subtotal<span class="inner-left-md">$600.00</span>
-                                </div>
-                                <div class="cart-grand-total">
-                                    Grand Total<span class="inner-left-md">$600.00</span>
-                                </div>
-                            </th>
-                        </tr>
+                        <thead id="couponCalField">
+
                         </thead><!-- /thead -->
                         <tbody>
-                        <tr>
-                            <td>
-                                <div class="cart-checkout-btn pull-right">
-                                    <button type="submit" class="btn btn-primary checkout-btn">PROCCED TO CHEKOUT</button>
-                                </div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>
+                                    <div class="cart-checkout-btn pull-right">
+                                        <button type="submit" class="btn btn-primary checkout-btn">PROCCED TO CHEKOUT</button>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody><!-- /tbody -->
                     </table><!-- /table -->
                 </div><!-- /.cart-shopping-total -->
