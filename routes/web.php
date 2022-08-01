@@ -218,6 +218,8 @@ Route::post('/coupon-apply' , [CartController::class, 'couponApply']);
 
 Route::get('/coupon-calculation' , [CartController::class, 'couponCalculation']);
 
+Route::get('/coupon-remove' , [CartController::class, 'couponRemove']);
+
 
 
 

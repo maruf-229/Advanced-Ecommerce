@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Session;
 class CartController extends Controller
 {
     public function addToCart(Request $request ,$id){
+
+        if (Session::has('coupon')){
+            Session::forget('coupon');
+        }
+
         $product = Product::findOrFail($id);
 
         if($product->discount_price == NULL){
@@ -94,12 +99,17 @@ class CartController extends Controller
                 'coupon_name' => session()->get('coupon')['coupon_name'],
                 'coupon_discount' => session()->get('coupon')['coupon_discount'],
                 'discount_amount' => session()->get('coupon')['discount_amount'],
-                'total_amount' => session()->get('coupon')['total_amount']
+                'total_amount' => session()->get('coupon')['total_amount'],
             ));
         }else{
             return response()->json(array(
                 'total' => Cart::total(),
             ));
         }
+    }
+
+    public function couponRemove(){
+        Session::forget('coupon');
+        return response()->json(['success' => 'Coupon Removed Successfully']);
     }
 }
