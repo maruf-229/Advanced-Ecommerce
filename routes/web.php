@@ -220,6 +220,8 @@ Route::get('/coupon-calculation' , [CartController::class, 'couponCalculation'])
 
 Route::get('/coupon-remove' , [CartController::class, 'couponRemove']);
 
+//checkout routes
+Route::get('/checkout', [CartController::class, 'checkoutCreate'])->name('checkout');
 
 
 
