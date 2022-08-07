@@ -37,31 +37,36 @@
                                     <div class="row">
 
                                         <!-- guest-login -->
-                                        <div class="col-md-6 col-sm-6 guest-login">
-                                            <h4 class="checkout-subtitle">Guest or Register Login</h4>
-                                            <p class="text title-tag-line">Register with us for future convenience:</p>
-
-                                            <!-- radio-form  -->
+                                        <div class="col-md-6 col-sm-6 already-registered-login">
+                                            <h4 class="checkout-subtitle"><b>Shipping Address</b></h4>
                                             <form class="register-form" role="form">
-                                                <div class="radio radio-checkout-unicase">
-                                                    <input id="guest" type="radio" name="text" value="guest" checked>
-                                                    <label class="radio-button guest-check" for="guest">Checkout as Guest</label>
-                                                    <br>
-                                                    <input id="register" type="radio" name="text" value="register">
-                                                    <label class="radio-button" for="register">Register</label>
+                                                @csrf
+
+                                                <div class="form-group">
+                                                    <label class="info-title" for="exampleInputEmail1">Shipping Name <span>*</span></label>
+                                                    <input type="text" name="shipping_name" class="form-control unicase-form-control text-input" id="exampleInputEmail1"
+                                                           placeholder="Full Name" value="{{ Auth::user()->name }}">
                                                 </div>
+
+                                                <div class="form-group">
+                                                    <label class="info-title" for="exampleInputEmail1">Email <span>*</span></label>
+                                                    <input type="email" name="shipping_email" class="form-control unicase-form-control text-input" id="exampleInputEmail1"
+                                                           placeholder="Email" value="{{ Auth::user()->email }}">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="info-title" for="exampleInputEmail1">Phone <span>*</span></label>
+                                                    <input type="number" name="shipping_email" class="form-control unicase-form-control text-input" id="exampleInputEmail1"
+                                                           placeholder="Phone Number" value="{{ Auth::user()->phone }}">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="info-title" for="exampleInputEmail1">Post Code <span>*</span></label>
+                                                    <input type="number" name="shipping_email" class="form-control unicase-form-control text-input" id="exampleInputEmail1"
+                                                           placeholder="Post Code">
+                                                </div>
+
                                             </form>
-                                            <!-- radio-form  -->
-
-                                            <h4 class="checkout-subtitle outer-top-vs">Register and save time</h4>
-                                            <p class="text title-tag-line ">Register with us for future convenience:</p>
-
-                                            <ul class="text instruction inner-bottom-30">
-                                                <li class="save-time-reg">- Fast and easy check out</li>
-                                                <li>- Easy access to your order history and status</li>
-                                            </ul>
-
-                                            <button type="submit" class="btn-upper btn btn-primary checkout-page-button checkout-continue ">Continue</button>
                                         </div>
                                         <!-- guest-login -->
 
