@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\User\CartPageController;
+use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\WishlistController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -223,5 +224,8 @@ Route::get('/coupon-remove' , [CartController::class, 'couponRemove']);
 //checkout routes
 Route::get('/checkout', [CartController::class, 'checkoutCreate'])->name('checkout');
 
+Route::get('/district-get/ajax/{division_id}' , [CheckoutController::class, 'districtGetAjax']);
+
+Route::get('/state-get/ajax/{district_id}' , [CheckoutController::class, 'stateGetAjax']);
 
 

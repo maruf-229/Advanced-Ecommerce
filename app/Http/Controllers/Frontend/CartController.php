@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
 use App\Models\Product;
+use App\Models\ShipDivision;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -126,7 +127,9 @@ class CartController extends Controller
                 $carts = Cart::content();
                 $cartQty = Cart::count();
                 $cartTotal = Cart::total();
-                return view('frontend.checkout.checkout_view',compact('carts','cartQty','cartTotal'));
+
+                $divisions = ShipDivision::orderBy('division_name','ASC')->get();
+                return view('frontend.checkout.checkout_view',compact('carts','cartQty','cartTotal','divisions'));
 
             }else{
                 $notification = array(
