@@ -14,6 +14,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\WishlistController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -198,6 +199,7 @@ function (){
     //remove wishlist product
     Route::get('/wishlist-remove/{id}' , [WishlistController::class, 'removeWishlistProduct']);
 
+    Route::post('/stripe/order' , [StripeController::class, 'stripeOrder'])->name('stripe.order');
 });
 
 //cart page
