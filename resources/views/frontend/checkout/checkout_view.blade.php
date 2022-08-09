@@ -22,6 +22,8 @@
     <div class="container">
         <div class="checkout-box ">
             <div class="row">
+                <form class="register-form" action="{{ route('checkout.store') }}" method="POST">
+                    @csrf
                 <div class="col-md-8">
                     <div class="panel-group checkout-steps" id="accordion">
 
@@ -41,30 +43,29 @@
                                         <!-- guest-login -->
                                         <div class="col-md-6 col-sm-6 already-registered-login">
                                             <h3 class="checkout-subtitle"><b>Shipping Address</b></h3>
-                                            <form class="register-form" role="form">
-                                                @csrf
+
 
                                                 <div class="form-group">
                                                     <label class="info-title" for="exampleInputEmail1"><b>Shipping Name</b> <span>*</span></label>
-                                                    <input type="text" name="shipping_name" class="form-control unicase-form-control text-input" id="exampleInputEmail1"
+                                                    <input type="text" name="shipping_name" class="form-control unicase-form-control text-input"
                                                            placeholder="Full Name" value="{{ Auth::user()->name }}">
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="info-title" for="exampleInputEmail1"><b>Email</b> <span>*</span></label>
-                                                    <input type="email" name="shipping_email" class="form-control unicase-form-control text-input" id="exampleInputEmail1"
+                                                    <input type="email" name="shipping_email" class="form-control unicase-form-control text-input"
                                                            placeholder="Email" value="{{ Auth::user()->email }}">
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="info-title" for="exampleInputEmail1"><b>Phone</b> <span>*</span></label>
-                                                    <input type="number" name="shipping_email" class="form-control unicase-form-control text-input" id="exampleInputEmail1"
+                                                    <input type="text" name="shipping_phone" class="form-control unicase-form-control text-input"
                                                            placeholder="Phone Number" value="{{ Auth::user()->phone }}">
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="info-title" for="exampleInputEmail1"><b>Post Code</b> <span>*</span></label>
-                                                    <input type="number" name="shipping_email" class="form-control unicase-form-control text-input" id="exampleInputEmail1"
+                                                    <input type="number" name="post_code" class="form-control unicase-form-control text-input" id="exampleInputEmail1"
                                                            placeholder="Post Code">
                                                 </div>
 
@@ -122,8 +123,8 @@
                                                 <textarea class="form-control" cols="30" rows="5" placeholder="Notes" name="notes"></textarea>
                                              </div>
 
-                                             <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
-                                            </form>
+
+
                                         </div>
                                         <!-- already-registered-login -->
 
@@ -137,6 +138,8 @@
 
                     </div><!-- /.checkout-steps -->
                 </div>
+
+
                 <div class="col-md-4">
                     <!-- checkout-progress-sidebar -->
                     <div class="checkout-progress-sidebar ">
@@ -189,7 +192,49 @@
                             </div>
                         </div>
                     </div>
-                    <!-- checkout-progress-sidebar -->				</div>
+                    <!-- checkout-progress-sidebar -->
+
+
+
+
+
+                    <!-- checkout-progress-sidebar -->
+                    <div class="checkout-progress-sidebar ">
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="unicase-checkout-title">Select Payment Method</h4>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-md-4">
+                                        <label for="">Stripe</label>
+                                        <input type="radio" name="payment_method" value="stripe" />
+                                        <img src="{{ asset('frontend/assets/images/payments/4.png') }}" />
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label for="">Card</label>
+                                        <input type="radio" name="payment_method" value="card" />
+                                        <img src="{{ asset('frontend/assets/images/payments/3.png') }}" />
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label for="">Cash</label>
+                                        <input type="radio" name="payment_method" value="cash" />
+                                        <img src="{{ asset('frontend/assets/images/payments/2.png') }}" />
+                                    </div>
+
+                                </div>
+                                <hr>
+                                <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Proceed To Payment</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- checkout-progress-sidebar -->
+                </div>
+
+                </form>
             </div><!-- /.row -->
         </div><!-- /.checkout-box -->
         <!-- ============================================== BRANDS CAROUSEL ============================================== -->

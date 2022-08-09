@@ -228,4 +228,4 @@ Route::get('/district-get/ajax/{division_id}' , [CheckoutController::class, 'dis
 
 Route::get('/state-get/ajax/{district_id}' , [CheckoutController::class, 'stateGetAjax']);
 
-
+Route::post('/checkout/store' , [CheckoutController::class, 'checkoutStore'])->name('checkout.store');
