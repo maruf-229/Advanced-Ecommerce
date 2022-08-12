@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
+use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
@@ -199,7 +200,12 @@ function (){
     //remove wishlist product
     Route::get('/wishlist-remove/{id}' , [WishlistController::class, 'removeWishlistProduct']);
 
+    //stripe payment
     Route::post('/stripe/order' , [StripeController::class, 'stripeOrder'])->name('stripe.order');
+
+    //User orders
+    Route::get('/my/orders' , [AllUserController::class, 'myOrders'])->name('my.orders');
+    Route::get('/order-details/{order_id}' , [AllUserController::class, 'orderDetails']);
 });
 
 //cart page
