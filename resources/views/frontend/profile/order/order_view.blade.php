@@ -58,12 +58,13 @@
 
                                     <td class="col-md-2">
                                         <label for="">
-                                            <span class="badge badge-pill badge-warning" style="background: #418DB9">{{ $order->status }}</span></label>
+                                            <span class="badge badge-pill badge-warning" style="background: #418DB9">{{ $order->status }}</span>
+                                        </label>
                                     </td>
 
                                     <td class="col-md-1">
                                         <a href="{{ url('user/order-details/'.$order->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i>View</a>
-                                        <a href="" class="btn btn-sm btn-danger"><i class="fa fa-download" style="color: white"></i>Invoice</a>
+                                        <a href="{{ url('user/invoice-download/'.$order->id) }}" class="btn btn-sm btn-danger" style="margin-top: 5px;"><i class="fa fa-download" style="color: white"></i>Invoice</a>
                                     </td>
                                 </tr>
                                 @endforeach

@@ -14,6 +14,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\User\CartPageController;
+use App\Http\Controllers\User\CashController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\WishlistController;
@@ -203,9 +204,14 @@ function (){
     //stripe payment
     Route::post('/stripe/order' , [StripeController::class, 'stripeOrder'])->name('stripe.order');
 
+    //cash payment
+    Route::post('/cash/order' , [CashController::class, 'cashOrder'])->name('cash.order');
+
     //User orders
     Route::get('/my/orders' , [AllUserController::class, 'myOrders'])->name('my.orders');
     Route::get('/order-details/{order_id}' , [AllUserController::class, 'orderDetails']);
+    Route::get('/invoice-download/{order_id}' , [AllUserController::class, 'invoiceDownload']);
+
 });
 
 //cart page
