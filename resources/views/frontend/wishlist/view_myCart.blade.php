@@ -2,7 +2,7 @@
 @section('content')
 
 @section('title')
-    My Cart PAge
+    My Cart Page
 @endsection
 
 <div class="breadcrumb">
