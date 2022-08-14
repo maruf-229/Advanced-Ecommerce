@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\SliderController;
@@ -136,6 +137,12 @@ Route::middleware(['auth:admin'])->group(function (){
         Route::get('/state/edit/{id}' , [ShippingAreaController::class, 'editState'])->name('state.edit');
         Route::post('/state/update{id}' , [ShippingAreaController::class, 'stateUpdate'])->name('state.update');
         Route::get('/state/delete/{id}' , [ShippingAreaController::class, 'stateDelete'])->name('state.delete');
+    });
+
+    // Admin Coupon routes
+    Route::prefix('orders')->group(function (){
+        Route::get('/pending/orders' , [OrderController::class, 'pendingOrders'])->name('pending-orders');
+        Route::get('/pending/order/details/{order_id}' , [OrderController::class, 'pendingOrderDetails'])->name('pending.order.details');
     });
 
 });
