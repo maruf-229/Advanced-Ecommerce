@@ -139,10 +139,30 @@ Route::middleware(['auth:admin'])->group(function (){
         Route::get('/state/delete/{id}' , [ShippingAreaController::class, 'stateDelete'])->name('state.delete');
     });
 
-    // Admin Coupon routes
+    // Admin orders routes
     Route::prefix('orders')->group(function (){
         Route::get('/pending/orders' , [OrderController::class, 'pendingOrders'])->name('pending-orders');
         Route::get('/pending/order/details/{order_id}' , [OrderController::class, 'pendingOrderDetails'])->name('pending.order.details');
+
+        Route::get('/confirmed/orders' , [OrderController::class, 'confirmedOrders'])->name('confirmed-orders');
+
+        Route::get('/processing/orders' , [OrderController::class, 'processingOrders'])->name('processing-orders');
+
+        Route::get('/picked/orders' , [OrderController::class, 'pickedOrders'])->name('picked-orders');
+
+        Route::get('/shipped/orders' , [OrderController::class, 'shippedOrders'])->name('shipped-orders');
+
+        Route::get('/delivered/orders' , [OrderController::class, 'deliveredOrders'])->name('delivered-orders');
+
+        Route::get('/cancelled/orders' , [OrderController::class, 'cancelledOrders'])->name('cancelled-orders');
+
+        //update order status
+        Route::get('/pending/confirm/{order_id}' , [OrderController::class, 'pendingToConfirm'])->name('pending-confirm');
+        Route::get('/confirm/processing/{order_id}' , [OrderController::class, 'confirmToProcessing'])->name('confirm-processing');
+        Route::get('/processing/picked/{order_id}' , [OrderController::class, 'processingToPicked'])->name('processing-picked');
+        Route::get('/picked/shipped/{order_id}' , [OrderController::class, 'pickedToShipped'])->name('picked-shipped');
+        Route::get('/shipped/delivered/{order_id}' , [OrderController::class, 'shippedToDelivered'])->name('shipped-delivered');
+        Route::get('/delivered/cancelled/{order_id}' , [OrderController::class, 'deliveredToCancelled'])->name('delivered-cancelled');
     });
 
 });
