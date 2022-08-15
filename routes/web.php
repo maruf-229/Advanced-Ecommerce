@@ -163,6 +163,9 @@ Route::middleware(['auth:admin'])->group(function (){
         Route::get('/picked/shipped/{order_id}' , [OrderController::class, 'pickedToShipped'])->name('picked-shipped');
         Route::get('/shipped/delivered/{order_id}' , [OrderController::class, 'shippedToDelivered'])->name('shipped-delivered');
         Route::get('/delivered/cancelled/{order_id}' , [OrderController::class, 'deliveredToCancelled'])->name('delivered-cancelled');
+
+        //admin invoice download
+        Route::get('/invoice/download/{order_id}' , [OrderController::class, 'adminInvoiceDownload'])->name('invoice.download');
     });
 
 });
