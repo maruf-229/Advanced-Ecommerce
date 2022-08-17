@@ -178,6 +178,11 @@ Route::middleware(['auth:admin'])->group(function (){
 
     });
 
+    // Admin All Users routes
+    Route::prefix('all-user')->group(function (){
+        Route::get('/view' , [AdminProfileController::class, 'AllUsers'])->name('all-users');
+    });
+
 });
 
 
