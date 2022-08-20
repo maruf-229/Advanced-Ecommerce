@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CouponController;
@@ -181,6 +182,15 @@ Route::middleware(['auth:admin'])->group(function (){
     // Admin All Users routes
     Route::prefix('all-user')->group(function (){
         Route::get('/view' , [AdminProfileController::class, 'AllUsers'])->name('all-users');
+    });
+
+    // Admin All Blog routes
+    Route::prefix('blog')->group(function (){
+        Route::get('/category' , [BlogController::class, 'blogCategory'])->name('blog.category');
+        Route::post('/category/store' , [BlogController::class, 'blogCategoryStore'])->name('blog_category.store');
+        Route::get('/category/edit/{id}' , [BlogController::class, 'blogCategoryEdit'])->name('blog_category.edit');
+        Route::post('/update' , [BlogController::class, 'blogCategoryUpdate'])->name('blog_category.update');
+        Route::get('/delete/{id}' , [BlogController::class, 'blogCategoryDelete'])->name('blog_category.delete');
     });
 
 });
