@@ -191,6 +191,14 @@ Route::middleware(['auth:admin'])->group(function (){
         Route::get('/category/edit/{id}' , [BlogController::class, 'blogCategoryEdit'])->name('blog_category.edit');
         Route::post('/update' , [BlogController::class, 'blogCategoryUpdate'])->name('blog_category.update');
         Route::get('/delete/{id}' , [BlogController::class, 'blogCategoryDelete'])->name('blog_category.delete');
+
+        // Admin Blog post routes
+        Route::get('/add/post' , [BlogController::class, 'addBlogPost'])->name('add.post');
+        Route::get('/view/post' , [BlogController::class, 'viewBlogPost'])->name('view.post');
+        Route::post('/store/post' , [BlogController::class, 'storeBlogPost'])->name('post_store');
+        Route::get('/post/edit/{id}' , [BlogController::class, 'blogPostEdit'])->name('blog_post.edit');
+        Route::post('/post/update' , [BlogController::class, 'blogPostUpdate'])->name('blog_post.update');
+        Route::get('/post/delete/{id}' , [BlogController::class, 'blogPostDelete'])->name('blog_post.delete');
     });
 
 });
