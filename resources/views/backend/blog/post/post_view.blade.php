@@ -29,7 +29,7 @@
                                     <tbody>
                                     @foreach($blog_post as $item)
                                         <tr>
-                                            <td>{{ $item->category_id }}</td>
+                                            <td>{{ $item->category->blog_category_name_en }}</td>
                                             <td>
                                                 <img src="{{ asset($item->post_image) }}" style="width: 60px;height: 60px">
                                             </td>
