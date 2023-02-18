@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\ShippingAreaController;
+use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Frontend\CartController;
@@ -199,6 +200,15 @@ Route::middleware(['auth:admin'])->group(function (){
         Route::get('/post/edit/{id}' , [BlogController::class, 'blogPostEdit'])->name('blog_post.edit');
         Route::post('/post/update' , [BlogController::class, 'blogPostUpdate'])->name('blog_post.update');
         Route::get('/post/delete/{id}' , [BlogController::class, 'blogPostDelete'])->name('blog_post.delete');
+    });
+
+    // Admin site setting routes
+    Route::prefix('setting')->group(function (){
+        Route::get('/site' , [SiteSettingController::class, 'SiteSetting'])->name('site.setting');
+        Route::post('/site/update' , [SiteSettingController::class, 'SiteSettingUpdate'])->name('update_site_setting');
+        Route::get('/seo' , [SiteSettingController::class, 'seoSetting'])->name('seo.setting');
+        Route::post('/seo/update' , [SiteSettingController::class, 'SeoSettingUpdate'])->name('update_seo_setting');
+
     });
 
 });
