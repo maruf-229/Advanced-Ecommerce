@@ -255,6 +255,23 @@
 
                 </ul>
             </li>
+
+            <li class="treeview {{ ($prefix == '/admin_user_role')? 'active':'' }}">
+                <a href="#">
+                    <i data-feather="file"></i>
+                    <span>Admin User Role</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li class="{{ ($route == 'all_admin_users')? 'active':'' }}">
+                        <a href="{{ route('all_admin_users') }}"><i class="ti-more"></i>All Admin Users</a>
+                    </li>
+
+                </ul>
+            </li>
         </ul>
     </section>
 

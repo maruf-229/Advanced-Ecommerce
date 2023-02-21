@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\AdminUserController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
@@ -208,6 +209,13 @@ Route::middleware(['auth:admin'])->group(function (){
         Route::post('/site/update' , [SiteSettingController::class, 'SiteSettingUpdate'])->name('update_site_setting');
         Route::get('/seo' , [SiteSettingController::class, 'seoSetting'])->name('seo.setting');
         Route::post('/seo/update' , [SiteSettingController::class, 'SeoSettingUpdate'])->name('update_seo_setting');
+
+    });
+
+    // Admin All User routes
+    Route::prefix('admin_user_role')->group(function (){
+        Route::get('/all' , [AdminUserController::class, 'allAdminRole'])->name('all_admin_users');
+
 
     });
 
