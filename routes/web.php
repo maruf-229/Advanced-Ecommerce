@@ -215,6 +215,8 @@ Route::middleware(['auth:admin'])->group(function (){
     // Admin All User routes
     Route::prefix('admin_user_role')->group(function (){
         Route::get('/all' , [AdminUserController::class, 'allAdminRole'])->name('all_admin_users');
+        Route::get('/add' , [AdminUserController::class, 'addAdminRole'])->name('add.admin');
+        Route::post('/add/store' , [AdminUserController::class, 'storeAdminRole'])->name('admin.user.store');
 
 
     });

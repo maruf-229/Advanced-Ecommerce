@@ -27,6 +27,23 @@ class Admin extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'brand',
+        'category',
+        'product',
+        'slider',
+        'coupons',
+        'shipping',
+        'blog',
+        'setting',
+        'return_order',
+        'review',
+        'orders',
+        'stock',
+        'reports',
+        'all_user',
+        'admin_user_role',
+        'type',
     ];
 
     /**

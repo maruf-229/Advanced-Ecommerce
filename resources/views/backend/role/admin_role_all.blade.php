@@ -11,7 +11,8 @@
                     <div class="box">
                         <div class="box-header with-border">
                             <h3 class="box-title">Total Admin User</h3>
-                        </div>
+                            <a href="{{ route('add.admin') }}" class="btn btn-danger" style="float: right">Add Admin user</a>
+                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
                             <div class="table-responsive">
@@ -29,11 +30,86 @@
                                     @foreach($admin_user as $item)
                                         <tr>
                                             <td>
-                                                <img src="{{ asset($item->profile_photo_path) }}">
+                                                <img src="{{ asset($item->profile_photo_path) }}" style="width: 50px; height: 50px">
                                             </td>
                                             <td>{{ $item->name }}%</td>
                                             <td>${{ $item->email  }}</td>
-                                            <td></td>
+                                            <td>
+                                                @if($item->brand == 1)
+                                                    <span class="badge badge-primary">Brand</span>
+                                                @else
+                                                @endif
+
+                                                @if($item->category == 1)
+                                                    <span class="badge badge-primary">Category</span>
+                                                @else
+                                                @endif
+
+                                                @if($item->product == 1)
+                                                    <span class="badge badge-primary">Product</span>
+                                                @else
+                                                @endif
+
+                                                @if($item->slider == 1)
+                                                    <span class="badge badge-primary">Slider</span>
+                                                @else
+                                                @endif
+
+                                                @if($item->coupons == 1)
+                                                    <span class="badge badge-primary">Coupons</span>
+                                                @else
+                                                @endif
+
+                                                @if($item->shipping == 1)
+                                                    <span class="badge badge-primary">Shipping</span>
+                                                @else
+                                                @endif
+
+                                                @if($item->blog == 1)
+                                                    <span class="badge badge-primary">Blog</span>
+                                                @else
+                                                @endif
+
+                                                @if($item->setting == 1)
+                                                    <span class="badge badge-primary">Setting</span>
+                                                @else
+                                                @endif
+
+                                                @if($item->return_order == 1)
+                                                    <span class="badge badge-primary">Return Order</span>
+                                                @else
+                                                @endif
+
+                                                @if($item->review == 1)
+                                                    <span class="badge badge-primary">review</span>
+                                                @else
+                                                @endif
+                                                @if($item->orders == 1)
+                                                    <span class="badge badge-primary">Orders</span>
+                                                @else
+                                                @endif
+
+                                                @if($item->stock == 1)
+                                                    <span class="badge badge-primary">Stock</span>
+                                                @else
+                                                @endif
+
+                                                @if($item->reports == 1)
+                                                    <span class="badge badge-primary">Reports</span>
+                                                @else
+                                                @endif
+
+                                                @if($item->all_user == 1)
+                                                    <span class="badge badge-primary">All User</span>
+                                                @else
+                                                @endif
+
+                                                @if($item->admin_user_role == 1)
+                                                    <span class="badge badge-primary">Admin User Role</span>
+                                                @else
+                                                @endif
+
+                                            </td>
 
                                             <td>
                                                 <a href="{{ route('pending.order.details', $item->id) }}" class="btn btn-info" title="Edit Data"><i class="fa fa-eye"></i></a>
