@@ -12,17 +12,20 @@ use Illuminate\Support\Facades\Hash;
 class AdminProfileController extends Controller
 {
     public function AdminProfile(){
-        $adminData=Admin::find(1);
+        $id = Auth::user()->id;
+        $adminData = Admin::find($id);
         return view('admin.admin_profile_view',compact('adminData'));
     }
 
     public function AdminProfileEdit(){
-        $editData=Admin::find(1);
+        $id = Auth::user()->id;
+        $editData=Admin::findOrFail($id);
         return view('admin.admin_profile_edit',compact('editData'));
     }
 
     public function AdminProfileStore(Request $request){
-        $data = Admin::find(1);
+        $id = Auth::user()->id;
+        $data = Admin::findOrFail($id);
         $data->name = $request->name;
         $data->email = $request->email;
 
@@ -46,15 +49,17 @@ class AdminProfileController extends Controller
     }
 
     public function AdminUpdateChangePassword(Request $request){
+        $id = Auth::user()->id;
+
         $validateData = $request->validate([
             'oldPassword' => 'required',
             'password' => 'required|confirmed'
         ]);
 
-        $hashedPassword = Admin::find(1)->password;
+        $hashedPassword = Auth::user()->password;
 
         if (Hash::check($request->oldPassword,$hashedPassword)){
-            $admin = Admin::find(1);
+            $admin = Admin::findOrFail($id);
             $admin->password = Hash::make($request->password);
             $admin->save();
 

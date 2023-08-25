@@ -98,7 +98,10 @@ class BrandController extends Controller
 
         $brand = Brand::findOrFail($id);
         $img = $brand->brand_image;
-        unlink($img);
+        if($img){
+            unlink($img);
+        }
+
 
         Brand::findOrFail($id)->delete();
 

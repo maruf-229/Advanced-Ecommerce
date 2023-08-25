@@ -32,8 +32,8 @@
                                             <td>
                                                 <img src="{{ asset($item->profile_photo_path) }}" style="width: 50px; height: 50px">
                                             </td>
-                                            <td>{{ $item->name }}%</td>
-                                            <td>${{ $item->email  }}</td>
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->email  }}</td>
                                             <td>
                                                 @if($item->brand == 1)
                                                     <span class="badge badge-primary">Brand</span>
@@ -112,8 +112,8 @@
                                             </td>
 
                                             <td>
-                                                <a href="{{ route('pending.order.details', $item->id) }}" class="btn btn-info" title="Edit Data"><i class="fa fa-eye"></i></a>
-                                                <a target="_blank" href="{{ route('invoice.download', $item->id) }}" class="btn btn-danger" title="Invoice Download"><i class="fa fa-download"></i></a>
+                                                <a href="{{ route('edit.admin_user', $item->id) }}" class="btn btn-info" title="Edit Data"><i class="fa fa-eye"></i></a>
+                                                <a href="{{ route('delete.admin_user',$item->id) }}" class="btn btn-danger" id="delete" title="Delete Data"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

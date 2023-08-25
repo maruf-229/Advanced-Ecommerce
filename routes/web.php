@@ -32,15 +32,17 @@ Route::group(['prefix' => 'admin' , 'middleware' => ['admin:admin']],function ()
     Route::post('/login' , [AdminController::class, 'store'])->name('admin.login');
 });
 
-//admin all routes
-Route::get('/admin/logout' , [AdminController::class, 'destroy'])->name('admin.logout');
-Route::get('/admin/profile' , [AdminProfileController::class, 'AdminProfile'])->name('admin.profile');
-Route::get('/admin/profile/edit' , [AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit');
-Route::post('/admin/profile/store' , [AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store');
-Route::get('/admin/change/password' , [AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password');
-Route::post('/admin/change/password/update' , [AdminProfileController::class, 'AdminUpdateChangePassword'])->name('update.change.password');
+
 
 Route::middleware(['auth:admin'])->group(function (){
+
+    //admin all routes
+    Route::get('/admin/logout' , [AdminController::class, 'destroy'])->name('admin.logout');
+    Route::get('/admin/profile' , [AdminProfileController::class, 'AdminProfile'])->name('admin.profile');
+    Route::get('/admin/profile/edit' , [AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit');
+    Route::post('/admin/profile/store' , [AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store');
+    Route::get('/admin/change/password' , [AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password');
+    Route::post('/admin/change/password/update' , [AdminProfileController::class, 'AdminUpdateChangePassword'])->name('update.change.password');
 
     Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
         return view('admin.index');
@@ -217,6 +219,9 @@ Route::middleware(['auth:admin'])->group(function (){
         Route::get('/all' , [AdminUserController::class, 'allAdminRole'])->name('all_admin_users');
         Route::get('/add' , [AdminUserController::class, 'addAdminRole'])->name('add.admin');
         Route::post('/add/store' , [AdminUserController::class, 'storeAdminRole'])->name('admin.user.store');
+        Route::get('/edit/{id}' , [AdminUserController::class, 'editAdminRole'])->name('edit.admin_user');
+        Route::post('/update/store' , [AdminUserController::class, 'updateAdminRole'])->name('admin.user.update');
+        Route::get('/delete/{id}' , [AdminUserController::class, 'deleteAdminRole'])->name('delete.admin_user');
 
 
     });
